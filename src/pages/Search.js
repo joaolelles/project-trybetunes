@@ -9,7 +9,7 @@ class Search extends React.Component {
     super();
     this.state = {
       searching: '',
-      disableSearch: false,
+      disableSearch: true,
       loading: '',
       list: '',
       result: '',
@@ -19,12 +19,14 @@ class Search extends React.Component {
 
   handleClick = async () => {
     const { searching } = this.state;
-    const api = await searchAlbumsAPIs(searching);
     this.setState({
       searching: '',
-      loading: false,
-      list: api,
       result: `Resultado de álbuns de: ${searching}`,
+    });
+    const api = await searchAlbumsAPIs(searching);
+    this.setState({
+      loading: true,
+      list: api,
       apiReturn: true,
     });
   };
@@ -46,6 +48,14 @@ class Search extends React.Component {
       this.setState({ disableSearch: true });
     }
   };
+
+  // validationSearch = () => {
+  //   const { searching } = this.state;
+  //   const num = 2;
+  //   this.setState({
+  //     disableSearch: searching.length >= num,
+  //   });
+  // };
 
   getList = () => {
     const { list, result } = this.state;
