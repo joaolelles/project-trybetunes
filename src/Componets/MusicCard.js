@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
 class MusicCard extends React.Component {
@@ -24,10 +24,10 @@ class MusicCard extends React.Component {
     });
 
     const favoriteSongsAPI = await addSong(musics);
-    this.setState({
+    this.setState(({
       loading: false,
       infoFavorites: [...infoFavorites, favoriteSongsAPI],
-    });
+    }), getFavoriteSongs);
   };
 
   render() {
@@ -68,5 +68,7 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string,
   trackId: PropTypes.string,
 }.isRequired;
+
+// Requisito resolvido com a ajuda da Aimê S2 e o Sergio.
 
 export default MusicCard;
