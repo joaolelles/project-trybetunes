@@ -49,14 +49,6 @@ class Search extends React.Component {
     }
   };
 
-  // validationSearch = () => {
-  //   const { searching } = this.state;
-  //   const num = 2;
-  //   this.setState({
-  //     disableSearch: searching.length >= num,
-  //   });
-  // };
-
   getList = () => {
     const { list, result } = this.state;
     if (list.length === 0) {
